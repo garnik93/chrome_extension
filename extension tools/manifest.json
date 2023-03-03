@@ -1,0 +1,33 @@
+{
+  "name": "RingCentral RCV Automation Tools",
+
+  "action": {
+    "default_icon": "default_rcv_logo.png"//,
+    // "default_popup": "rcv_team.html"
+  },
+
+  "manifest_version": 3,
+
+  "version": "5.1",
+
+  "description": "Created by Garnik Gevorgyan for the automation team. Инструмент для автоматизации: Вытягивание степов из Test-It, Вытягивание номеров кейсов из Jira карт, Вытягивание данных из Beats report, Генерация Jira карт, Дополнительный settings page extension",
+
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+
+  "background": {
+    "service_worker": "rcv_automation_tools_script_test.js"
+  },
+
+  "content_scripts": [{
+    "matches": ["https://jira.ringcentral.com/secure/CreateIssue*"],
+    "js": ["extension_background.js"]
+  }],
+
+  "icons": {
+    "32": "favicon_32x32.png",
+    "128": "favicon_128x128.png"
+  }
+}
