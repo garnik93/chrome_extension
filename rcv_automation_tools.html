@@ -1,0 +1,1151 @@
+<DOCTYPE!>
+	<head>
+		<style type="text/css">
+			html {
+				color: var(#172b4d);
+				font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 1.42857143;
+				letter-spacing: 0;
+			}
+
+			#block ::-webkit-scrollbar {
+				width: 0;
+			}
+
+			.content {
+				position: fixed;
+				top: 150px;
+				left: 10px;
+			}
+
+			#block .input {
+				width: auto;
+				position: relative;
+				text-align: center;
+			}
+
+			#block input {
+				font-size: 14px;
+				height: 35px;
+				width: 90%;
+				outline: none;
+				border: none;
+				color: black;
+				text-align: center;
+				box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+			}
+
+			#block datalist {
+				position: absolute;
+				background-color: white;
+				font-family: "Century Gothic",Verdana,sans-serif;
+				width: 90%;
+				margin-left: 5%;
+				max-height: 20rem;
+				overflow-y: overlay;
+				box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+				border-radius: 0 0 5px 5px;
+				border: none;
+			}
+
+			#block input:hover, datalist{
+				z-index: 6;
+			}
+
+			#block option {
+				background-color: white;
+				padding: 4px;
+				color: black;
+				margin-bottom: 1px;
+				cursor: pointer;
+				white-space: inherit;
+			}
+
+			#block option:hover,  #block .active {
+				box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+				background-color: #40e551;
+				transition: .3s;
+			}
+
+			#block label, option {
+				position: relative;
+				font-size: 14px;
+				text-align: center;
+				overflow: auto;
+			}
+
+			#block .selectize-control {
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			#block .content_block {
+				width: 250px;
+				height: auto;
+				display: none;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			}
+
+			#block .preference {
+				display: flex;
+				justify-content: space-between;
+				margin: 0.5rem;
+				vertical-align: middle;
+				padding: auto;
+			}
+
+			#block #vertical {
+				margin: auto;
+				margin-left: 5px;
+				margin-right: 0;
+			}
+
+			#block input[type="checkbox"] {
+				position: relative;
+				width: 40px;
+				height: 20px;
+				-webkit-appearance: none;
+				outline: none;
+				background: #c6c6c6;
+				border-radius: 20px;
+				transition: .4s;
+				box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+			}
+
+			#block input:checked[type="checkbox"] {
+				background: #40e551;
+			}
+
+			#block input[type="checkbox"]:before {
+				content: '';
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				border-radius: 10px;
+				top: 0;
+				left: 0;
+				background: #fff;
+				transition: .3s;
+				transform:  scale(1.1);
+				box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+			}
+
+			#block input:checked[type="checkbox"]:before {
+				left: 20px;
+			}
+
+			#block input[type="checkbox"] #led {
+				background-color: red;
+			}
+
+			#block #button {
+				width: 95%;
+				height: 30px;
+				font-size: 15px;
+				-webkit-appearance: none;
+				outline: none;
+				background-color: #ff8800;
+				transition: .2s;
+				border-color: #E2e2e2;
+				border-radius: 5px;
+				border: none;
+				margin-bottom: 10px;
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+			}
+
+			#block #button:active {
+				background-color: #3e8e41;
+				box-shadow: 0 5px #666;
+				transform: translateY(2px);
+			}
+
+			#block #button:hover {
+				background-color: #4CAF40;
+				box-shadow: 0 8px 8px 0 rgba(0,0,0,0.24), 0 0px 20px 0 rgba(0,0,0,0.19);
+			}
+
+			@keyframes pulsing {
+				0% {transform: scale(0.9, 0.9)}
+				25% {transform: scale(0.8, 0.8)}
+				50% {transform: scale(1.0, 1.0)}
+				75% {transform: scale(0.7, 0.7)}
+				100% {transform: scale(0.9, 0.9)}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="block">
+			<img id="logo" src="https://yt3.googleusercontent.com/c4SUb04a-NLiq1zCurYTF21rgPvKmNMSLat94VaqROjEdtMRMuLRXdSublBVpAslYCPYW-fRTyo=s900-c-k-c0x00ffffff-no-rj">
+			<div class="content_block">
+				<img id="title_logo" src="https://logos-download.com/wp-content/uploads/2020/07/RingCentral_Logo-700x111.png">
+				<br>
+				<div class="preference" id="task">
+					<label id="vertical"> Fix / Automate </label>
+					<input type="checkbox" id="fix_case">
+				</div>
+				<div class="preference" id="browsers">
+					<label id="vertical"> Chrome / FireFox </label>
+					<input type="checkbox" id="browser">
+				</div>
+				<div class="preference">
+					<label id="vertical">Set actual sprint </label>
+					<input type="checkbox" id="check_sprint">
+				</div>
+				<div class="input">
+					<div id="box_env">
+						<br>
+						<label for="RCV env">Choose a environment:</label>
+						<br>
+						<input autocomplete="off" role="combobox" list="" id="input_env" name="rcv_env" placeholder="Select environment" align="">
+						<datalist id="data_env">
+							<option value="">-- Empty --</option>
+							<option value="vi11">vi11</option>
+							<option value="vi10">vi10</option>
+							<option value="vi7">vi7</option>
+							<option value="dev">dev</option>
+						</datalist>
+					</div>
+					<div id="box_team">
+						<br>
+						<label for="RCV team">Choose a team:</label>
+						<br>
+						<input autocomplete="off" role="combobox" list="" id="input_rcv_team" name="rcv_team" placeholder="Select team">
+						<datalist id="data_rcv_team">
+							<option value="IntegrationsAUT">IntegrationsAUT</option>
+							<option value="AutomationMera">AutomationMera</option>
+						</datalist>
+						<br>
+					</div>
+					<div id="block_feature">
+						<br>
+						<label for="RCV Feature">Choose a RCV Feature:</label>
+						<br>
+						<input autocomplete="off" role="combobox" list="" id="input_feature" name="rcv_team" placeholder="Select team">
+						<datalist id="data_feature">
+							<option value="A11y">A11y</option>
+							<option value="AdaptiveDesign">AdaptiveDesign</option>
+							<option value="Analytics">Analytics</option>
+							<option value="Authorization">Authorization</option>
+							<option value="Auto-follow">Auto-follow</option>
+							<option value="Avatars">Avatars</option>
+							<option value="Branding and Partners">Branding and Partners</option>
+							<option value="BreakoutRooms">BreakoutRooms</option>
+							<option value="BridgeSecuritySettings">BridgeSecuritySettings</option>
+							<option value="Browser-OSversions">Browser-OSversions</option>
+							<option value="BrowserPermissions">BrowserPermissions</option>
+							<option value="Calendars">Calendars</option>
+							<option value="Chat">Chat</option>
+							<option value="ClosedCaption/LiveTranscript">ClosedCaption/LiveTranscript</option>
+							<option value="CollaborativeNotes">CollaborativeNotes</option>
+							<option value="Data residency and privacy">Data residency and privacy</option>
+							<option value="E2EE meetings">E2EE meetings</option>
+							<option value="Email notifications">Email notifications</option>
+							<option value="Entry-ExitTones">Entry-ExitTones</option>
+							<option value="ExternalClientsSupport">ExternalClientsSupport</option>
+							<option value="High Availability (HA)">High Availability (HA)</option>
+							<option value="Improve my video in low light">Improve my video in low light</option>
+							<option value="In-meeting : Layouts / Gallery_SortingFiltering">In-meeting : Layouts / Gallery_SortingFiltering</option>
+							<option value="InMeetingBasicSettings">InMeetingBasicSettings</option>
+							<option value="InMeetingInvitation">InMeetingInvitation</option>
+							<option value="InMeetingJoinFlow">InMeetingJoinFlow</option>
+							<option value="InstantMeeting">InstantMeeting</option>
+							<option value="JoinAudio">JoinAudio</option>
+							<option value="JoinBeforeHost">JoinBeforeHost</option>
+							<option value="JoinFlow">JoinFlow</option>
+							<option value="JoinMeeting">JoinMeeting</option>
+							<option value="JoinShareScreen">JoinShareScreen</option>
+							<option value="Limits">Limits</option>
+							<option value="ListOfParticipants">ListOfParticipants</option>
+							<option value="Localization and internationalization">Localization and internationalization</option>
+							<option value="ManageDevices">ManageDevices</option>
+							<option value="Media Processing">Media Processing</option>
+							<option value="MeetingPasswords">MeetingPasswords</option>
+							<option value="ModeratorControls">ModeratorControls</option>
+							<option value="Multiple devices">Multiple devices</option>
+							<option value="NetworkQualityIndicator">NetworkQualityIndicator</option>
+							<option value="Non-Functional">Non-Functional</option>
+							<option value="Persistent Annotations">Persistent Annotations</option>
+							<option value="PersonalMeetingID">PersonalMeetingID</option>
+							<option value="PersonalMeetingName">PersonalMeetingName</option>
+							<option value="Presentation mode">Presentation mode</option>
+							<option value="PSTN_CallMe">PSTN_CallMe</option>
+							<option value="PSTN_CallOut">PSTN_CallOut</option>
+							<option value="PSTN_DialIn">PSTN_DialIn</option>
+							<option value="Reactions">Reactions</option>
+							<option value="Recents">Recents</option>
+							<option value="Recordings">Recordings</option>
+							<option value="Remote Desktop Control">Remote Desktop Control</option>
+							<option value="Schedule_OnBehalf">Schedule_OnBehalf</option>
+							<option value="Scheduling">Scheduling</option>
+							<option value="ScreenSharing_annotations (old)">ScreenSharing_annotations (old)</option>
+							<option value="ScreenSharing_presenter">ScreenSharing_presenter</option>
+							<option value="ScreenSharing_viewer">ScreenSharing_viewer</option>
+							<option value="SelfControls">SelfControls</option>
+							<option value="SendFeedback">SendFeedback</option>
+							<option value="SessionSecuritySettings">SessionSecuritySettings</option>
+							<option value="Summaries/Keywords">Summaries/Keywords</option>
+							<option value="SystemPermissions">SystemPermissions</option>
+							<option value="TempModerator">TempModerator</option>
+							<option value="TerminatedPage">TerminatedPage</option>
+							<option value="TestAudio">TestAudio</option><option value="Touch up my skin">Touch up my skin</option>
+							<option value="Virtual Background (VBG)">Virtual Background (VBG)</option>
+							<option value="VoiceActivityIndicator">VoiceActivityIndicator</option>
+							<option value="WaitingRoom">WaitingRoom</option>
+							<option value="Whiteboard">Whiteboard</option>
+						</datalist>
+						<br>
+					</div>
+					<div id="block_version">
+						<br>
+						<label for="Affect_version">Choose a Affect version:</label>
+						<br>
+						<input autocomplete="off" role="combobox" list="" id="input_version" name="version" placeholder="Select Affect version">
+						<datalist id="data_version">
+							<option value="61403">22.4.19 RWC + DSDK</option>
+							<option value="61331">22.4.141 RWC + DSDK</option>
+							<option value="61330">22.4.14 RWC + DSDK</option>
+							<option value="61128">22.4.13 RWC + DSDK</option>
+							<option value="61301">22.3.391 RWC + DSDK</option>
+							<option value="60935">22.4.12 RWC + DSDK</option>
+							<option value="60404">22.4.21 Backend</option>
+							<option value="60267">22.3.381 DSDK</option>
+							<option value="60370">22.4.11 RWC + DSDK</option>
+							<option value="60314">22.3.39 RWC + DSDK</option>
+							<option value="60271">22.4.13 Backend</option>
+							<option value="60075">22.4.12 Backend</option>
+							<option value="59685">22.4.16 RWC + DSDK</option>
+							<option value="56749">22.2.20 Whiteboard</option>
+							<option value="56750">22.3.30 Whiteboard</option>
+							<option value="59314">22.4.11 Backend</option>
+							<option value="59306">22.3.38 RWC + DSDK</option>
+							<option value="58622">22.3.31 RWC + DSDK</option>
+							<option value="58599">22.2.35 Backend</option>
+							<option value="58505">22.2.28 RWC + DSDK</option>
+							<option value="58471">22.2.33 Backend</option>
+							<option value="58417">22.2.32 Backend</option>
+							<option value="58312">22.2.27 RWC + DSDK</option>
+							<option value="58311">22.2.261 RWC + DSDK</option>
+							<option value="58169">22.2.31 Backend</option>
+							<option value="58096">22.2.17 Backend</option>
+							<option value="57782">22.2.15 Backend</option>
+							<option value="57608">22.2.14 Backend</option>
+							<option value="57580">22.2.13 Backend</option>
+							<option value="57416">22.2.12 Backend</option>
+							<option value="57389">22.2.192 RWC + DSDK</option>
+							<option value="57339">22.2.11 Backend</option>
+							<option value="56831">22.4.20 Backend</option>
+							<option value="56830">22.4.10 Backend</option>
+							<option value="56809">22.2.17 RWC + DSDK</option>
+							<option value="56779">22.1.32 Backend</option>
+							<option value="56734">22.2.16 RWC + DSDK</option>
+							<option value="56698">22.1.31 Backend</option>
+							<option value="56623">22.1.29 Backend</option>
+							<option value="56587">22.2.14 RWC + DSDK</option>
+							<option value="56528">22.1.28 Backend</option>
+							<option value="56495">22.1.29 RWC + DSDK</option>
+							<option value="56406">22.2.12 RWC + DSDK</option>
+							<option value="56405">22.1.28 RWC + DSDK</option>
+							<option value="56400">22.1.27 Backend</option>
+							<option value="56359">22.1.26 Backend</option>
+							<option value="56178">22.1.27 RWC + DSDK</option>
+							<option value="56166">22.2.15 RWC + DSDK</option>
+							<option value="56164">22.1.26 RWC + DSDK</option>
+							<option value="56128">22.1.25 Backend</option>
+							<option value="56075">22.1.24 Backend</option>
+							<option value="55990">22.1.23 Backend</option>
+							<option value="55884">22.1.22 Backend</option>
+							<option value="55605">22.1.22 RWC + DSDK</option>
+							<option value="55603">22.1.21 Backend</option>
+							<option value="55520">22.1.16 Backend</option>
+							<option value="55514">22.1.18 RWC + DSDK</option>
+							<option value="55508">22.1.21 RWC + DSDK</option>
+							<option value="55507">22.1.17 RWC + DSDK</option>
+							<option value="55438">22.1.16 RWC + DSDK</option>
+							<option value="55245">22.1.15 Backend</option>
+							<option value="55230">22.2.30 Backend</option>
+							<option value="55159">22.1.12 RWC + DSDK</option>
+							<option value="55111">22.1.14 Backend</option>
+							<option value="55088">22.1.25 RWC + DSDK</option>
+							<option value="55087">22.1.15 RWC + DSDK</option>
+							<option value="55046">22.1.13 Backend</option>
+							<option value="54883">21.4.34 RWC + DSDK</option>
+							<option value="54866">22.2.10 Backend</option>
+							<option value="54833">22.1.12 Backend</option>
+							<option value="54811">22.1.11 Backend</option>
+							<option value="54741">22.1.11 RWC + DSDK</option>
+							<option value="54432">21.4.33 RWC + DSDK</option>
+							<option value="54110">21.4.22 Backend</option>
+							<option value="53964">21.4.21 Backend</option>
+							<option value="53940">21.4.32 RWC + DSDK</option>
+							<option value="53876">21.4.31 RWC + DSDK</option>
+							<option value="53708">21.4.25 RWC + DSDK</option>
+							<option value="53627">21.4.24 RWC + DSDK</option>
+							<option value="53588">22.1.30 Backend</option>
+							<option value="53488">21.4.23 RWC + DSDK</option>
+							<option value="53482">21.4.13 Backend</option>
+							<option value="53479">22.2.10 RWC + DSDK</option>
+							<option value="53442">21.4.22 RWC + DSDK</option>
+							<option value="53403">21.4.21 RWC + DSDK</option>
+							<option value="53347">21.4.12 Backend</option>
+							<option value="53346">21.4.11 Backend</option>
+							<option value="53103">21.3.34 RWC + DSDK</option>
+							<option value="53070">old</option>
+							<option value="52733">21.3.33 RWC + DSDK</option>
+							<option value="52707">21.3.32 RWC + DSDK</option>
+							<option value="52678">21.3.31 Backend</option>
+							<option value="52615">21.3.31 RWC + DSDK</option>
+							<option value="52614">21.2.26</option>
+							<option value="52516">22.1.20 RWC + DSDK</option>
+							<option value="52515">22.1.20 Backend</option>
+							<option value="52514">22.1.10 RWC + DSDK</option>
+							<option value="52505">22.1.10 Backend</option>
+							<option value="52504">21.4.30 RWC + DSDK</option>
+							<option value="52483">21.3.26 RWC + DSDK</option>
+							<option value="52256">21.3.25 RWC + DSDK</option>
+							<option value="52193">21.3.24 Backend</option>
+							<option value="52087">21.3.24 RWC + DSDK</option>
+							<option value="51985">21.3.23 RWC + DSDK</option>
+							<option value="51983">21.2.36 DVC</option>
+							<option value="51935">21.3.23 Backend</option>
+							<option value="51816">21.3.22 RWC + DSDK</option>
+							<option value="51813">21.3.22 Backend</option>
+							<option value="51795">21.2.38 RWC</option>
+							<option value="51691">21.3.21 Backend</option>
+							<option value="51638">21.2.35 DVC</option>
+							<option value="51491">21.2.37 RWC</option>
+							<option value="51173">21.2.36 RWC</option>
+							<option value="50968">21.2.34 RWC + DVC</option>
+							<option value="50789">21.2.33 RWC + DVC</option>
+							<option value="50769">21.2.29 RWC + DVC</option>
+							<option value="50722">21.2.32 RWC + DVC</option>
+							<option value="50716">21.2.31 RWC + DVC</option>
+							<option value="50572">21.2.31 Backend</option>
+							<option value="50449">21.2.28 RWC + DVC</option>
+							<option value="50368">21.2.27 RWC + DVC</option>
+							<option value="50331">21.2.26 RWC + DVC</option>
+							<option value="50250">21.2.25 RWC + DVC</option>
+							<option value="50202">21.2.24 RWC + DVC</option>
+							<option value="50158">21.2.22 Backend</option>
+							<option value="50154">21.2.21 Backend</option>
+							<option value="50127">21.2.23 RWC + DVC</option>
+							<option value="50100">21.2.22 RWC + DVC</option>
+							<option value="50071">21.2.21 RWC + DVC</option>
+							<option value="49880">21.2.12 RWC</option>
+							<option value="47652">21.2.20 RWC + DVC</option>
+							<option value="47653">21.2.30 Backend</option>
+							<option value="47651">21.2.30 RWC + DVC</option>
+							<option value="50296">21.2.35 Backend + RWC</option>
+							<option value="48192">21.3.20 Backend</option>
+							<option value="48193">21.3.20 RWC + DSDK</option>
+							<option value="49816">21.3.30 Backend</option>
+							<option value="49817">21.3.30 RWC + DSDK</option>
+							<option value="49819">21.4.20 RWC + DSDK</option>
+							<option value="49740">21.2.11 RWC</option>
+							<option value="49688">21.2.11 DVC</option>
+							<option value="49462">21.2.11 Backend</option>
+							<option value="49182">21.1.37 RWC</option>
+							<option value="49150">21.1.36 RWC</option>
+							<option value="49106">21.1.31 RWC + DVC</option>
+							<option value="48771">21.1.27 RWC + DVC</option>
+							<option value="48809">21.1.28 RWC + DVC</option>
+							<option value="48629">21.2.10 RVR</option>
+							<option value="48575">21.1.35 RWC</option>
+							<option value="48526">21.1.26 RWC</option>
+							<option value="48438">21.1.23 Backend</option>
+							<option value="48306">21.1.22 Backend</option>
+							<option value="48305">21.1.21 Backend</option>
+							<option value="46439">21.1.20 Backend</option>
+							<option value="46418">21.1.20 RWC + DVC</option>
+							<option value="48368">21.1.25 RWC</option>
+							<option value="48772">21.1.32 Backend</option>
+							<option value="46444">21.1.30 Backend</option>
+							<option value="46484">21.1.30 RWC + DVC</option>
+							<option value="48072">21.1.14 Backend</option>
+							<option value="48035">21.1.12 RWC + DVC</option>
+							<option value="48016">21.1.12 Backend</option>
+							<option value="48013">21.1.13 Backend</option>
+							<option value="47971">21.1.11 RWC + DVC</option>
+							<option value="47970">20.4.36 RWC + DVC</option>
+							<option value="47748">20.4.35 RWC + DVC</option>
+							<option value="47742">21.1.11 Backend</option>
+							<option value="47655">21.2.10 Backend</option>
+							<option value="47626">21.2.10 RWC + DVC</option>
+							<option value="47654">21.2.20 Backend</option>
+							<option value="47645">21.1.15 Backend</option>
+							<option value="47618">20.4.34 RWC + DVC</option>
+							<option value="47503">20.4.33 RWC + DVC</option>
+							<option value="47489">20.4.36 Backend</option>
+							<option value="47403">20.4.32 RWC + DVC</option>
+							<option value="47402">20.4.34 Backend</option>
+							<option value="47380">20.4.31 RWC + DVC</option>
+							<option value="47242">20.4.32 Backend</option>
+							<option value="47202">20.4.31 Backend</option>
+							<option value="47122">20.4.35 Backend</option>
+							<option value="47102">20.4.22 Backend</option>
+							<option value="47013">20.4.23 DVC</option>
+							<option value="46945">20.4.21 Backend</option>
+							<option value="46853">20.4.22 DVC</option>
+							<option value="46852">20.4.13 DVC</option>
+							<option value="46791">20.4.21 RWC + DVC</option>
+							<option value="46611">20.4 RVR</option>
+							<option value="46442">21.1.10 Backend</option>
+							<option value="46427">VGW NG 20.3</option>
+							<option value="46417">21.1.10 RWC + DVC</option>
+							<option value="46387">20.4.12 DVC</option>
+							<option value="46386">20.3.28 DVC</option>
+							<option value="46344">20.3.27 DVC</option>
+							<option value="46343">20.4.11 DVC</option>
+							<option value="46298">20.3.34 Backend</option>
+							<option value="51379">21.4.20 Backend</option>
+							<option value="46252">20.3.26 DVC</option>
+							<option value="46207">20.4.30 Backend</option>
+							<option value="46206">20.4.20 Backend</option>
+							<option value="46204">20.3.32 Backend</option>
+							<option value="46202">20.3.33 Backend</option>
+							<option value="46191">20.4.25 RWC</option>
+							<option value="46172">20.3.31 Backend</option>
+							<option value="46107">20.3.31 RWC</option>
+							<option value="46030">20.3.15 Backend</option>
+							<option value="45634">20.3.24 Backend</option>
+							<option value="45633">20.3.23 Backend</option>
+							<option value="45576">20.3.22 Backend</option>
+							<option value="45531">20.3.21 Backend</option>
+							<option value="45472">20.4.15 RWC</option>
+							<option value="45471">20.4.30 RWC + DVC</option>
+							<option value="45470">20.4.10 RWC + DVC</option>
+							<option value="45469">20.4.20 RWC + DVC</option>
+							<option value="45466">20.4.10 Backend</option>
+							<option value="45450">20.3.16 Backend</option>
+							<option value="45395">20.3.16 DVC</option>
+							<option value="45187">20.3.11 Backend</option>
+							<option value="45126">20.3.11 RWC</option>
+							<option value="45097">20.2.3.3 Backend</option>
+							<option value="45019">20.2.3.2 RCT</option>
+							<option value="44986">20.2.3.1 DVC</option>
+							<option value="44962">20.2.3.1 CHS</option>
+							<option value="44540">20.3.35 RWC + DVC</option>
+							<option value="44240">20.2.2 RWC + DVC</option>
+							<option value="44233">20.2.2.4 Backend</option>
+							<option value="44181">20.3.30 RWC</option>
+							<option value="44180">20.3.30 Backend</option>
+							<option value="44178">20.3.25 RWC + DVC</option>
+							<option value="44177">20.3.15 RWC + DVC</option>
+							<option value="43639">20.3.20 RWC</option>
+							<option value="44176">20.3.20 Backend</option>
+							<option value="44174">20.3.10 Backend</option>
+							<option value="44173">20.2.3 Backend</option>
+							<option value="44790">20.2.2.5 DVC</option>
+							<option value="43949">20.2.2.2 RWC</option>
+							<option value="43901">20.2.1.10</option>
+							<option value="43878">20.2.1.9</option>
+							<option value="43833">20.2.1.8</option>
+							<option value="43832">20.2.1.7</option>
+							<option value="43809">20.2.1.6</option>
+							<option value="43889">20.2.2.1 Backend</option>
+							<option value="43700">20.2.1.4</option>
+							<option value="43660">20.2.1.3</option>
+							<option value="43647">20.2.1.2</option>
+							<option value="43615">20.2.1.1</option>
+							<option value="44185">20.2.2.0 Backend</option>
+							<option value="43560">20.1.3.8</option>
+							<option value="43511">20.1.3.6</option>
+							<option value="43510">20.1.3.7</option>
+							<option value="43492">20.1.3.5</option>
+							<option value="43451">20.1.3.4</option>
+							<option value="43443">20.1.3.3</option>
+							<option value="43425">20.1.3.2</option>
+							<option value="43311">20.1.3.1</option>
+							<option value="43288">20.1.2.5</option>
+							<option value="43275">20.3.10 RWC</option>
+							<option value="43089">20.1.2.4</option>
+							<option value="43086">20.1.2.3</option>
+							<option value="42974">20.1.2.2</option>
+							<option value="42888">20.1.2.1</option>
+							<option value="42875">20.1.1.4</option>
+							<option value="42823">20.1.1.3</option>
+							<option value="42704">20.1.1.2</option>
+							<option value="42696">19.4.3.4</option>
+							<option value="42641">20.1.1.1</option>
+							<option value="42625">20.2.3 RWC + DVC</option>
+							<option value="42624">20.2.2 Backend</option>
+							<option value="42623">20.2.1</option>
+							<option value="42389">Release 20.1</option>
+							<option value="42352">Release 20.1 CIN</option>
+							<option value="42349">19.4.2.2</option>
+							<option value="42334">19.4.3.3</option>
+							<option value="42276">19.4.3.2</option>
+							<option value="42165">19.4.3.1</option>
+							<option value="41963">Release 19.4.1 AMD</option>
+							<option value="41951">19.4.2.03</option>
+							<option value="41947">19.4.2.02</option>
+							<option value="41932">R27.1.7</option>
+							<option value="41870">R27.1.6</option>
+							<option value="41859">R27.1.5</option>
+							<option value="41853">20.1.3</option>
+							<option value="41852">20.1.2</option>
+							<option value="41820">R27.1.4</option>
+							<option value="40200">20.1.1</option>
+							<option value="41782">R27.1.3</option>
+							<option value="41746">R27.0.4</option>
+							<option value="41740">R27.1.2</option>
+							<option value="41730">R27.0.3</option>
+							<option value="41709">R27.1.1</option>
+							<option value="41156">R27.1</option>
+							<option value="41668">R27.0.2</option>
+							<option value="41651">R27.0.1</option>
+							<option value="41521">R26.1.5</option>
+							<option value="41468">R26.3</option>
+							<option value="41460">R26.2</option>
+							<option value="41411">R26.1.4</option>
+							<option value="41398">R26.1.3</option>
+							<option value="41376">R26.0.2</option>
+							<option value="41365">R26.1.1</option>
+							<option value="41324">R26.0.1</option>
+							<option value="41153">R26.1</option>
+							<option value="41117">R25.1.1</option>
+							<option value="41078">R25.2</option>
+							<option value="40963">R25.0.1</option>
+							<option value="40809">R24.0.2</option>
+							<option value="40410">Release 19.3.1 AMD</option>
+							<option value="40394">R24.0.1</option>
+							<option value="40237">R23.2.1</option>
+							<option value="39760">19.4.3 (R29)</option>
+							<option value="41478">19.4.2.1</option>
+							<option value="39759">19.4.2 (R28)</option>
+							<option value="39758">R27</option>
+							<option value="39755">R26</option>
+							<option value="40199">R25.1</option>
+							<option value="39740">R25</option>
+							<option value="40198">R24.1</option>
+							<option value="38743">R24</option>
+							<option value="39748">R23.2</option>
+							<option value="39364">R23.1</option>
+							<option value="38664">R23</option>
+							<option value="39690">R22.1.4</option>
+							<option value="39687">R22.1.3</option>
+							<option value="39432">R22.1.2</option>
+							<option value="39387">R22.1.1</option>
+							<option value="38745">R22.1</option>
+							<option value="38160">R22</option>
+							<option value="38777">R21.2</option>
+							<option value="38744">R21.1</option>
+							<option value="38836">R21.0.1</option>
+							<option value="37835">R21</option>
+							<option value="38802">R20.4</option>
+							<option value="38713">R20.3</option>
+							<option value="38705">R20.2</option>
+							<option value="38746">R20.1.2</option>
+							<option value="38666">R20.1.1</option>
+							<option value="38283">R20.1</option>
+							<option value="38596">R20.0.3</option>
+							<option value="38689">release_20_blender</option>
+							<option value="37717">R20</option>
+							<option value="38391">R19.2.2</option>
+							<option value="38390">R19.2.1</option>
+							<option value="38303">R19.2</option>
+							<option value="38347">R19.1.1</option>
+							<option value="37591">R19.1</option>
+							<option value="38105">R19.0.1</option>
+							<option value="37592">R19</option>
+							<option value="37836">R18.2</option>
+							<option value="37493">R18.1</option>
+							<option value="36227">R18</option>
+							<option value="37462">R17.1</option>
+							<option value="36226">R17</option>
+							<option value="37379">R16.2</option>
+							<option value="37330">R16.1</option>
+							<option value="35986">R16</option>
+							<option value="37200">R15.2</option>
+							<option value="36796">R15.1</option>
+							<option value="35985">R15</option>
+							<option value="36690">R14.2</option>
+							<option value="36469">R14.1</option>
+							<option value="35771">R14</option>
+							<option value="36328">R13.1</option>
+							<option value="35770">R13</option>
+							<option value="35687">R12</option>
+							<option value="35690">R11</option>
+							<option value="34832">R10</option>
+							<option value="34487">R9.1</option>
+							<option value="34049">R8</option>
+							<option value="33917">R7</option>
+							<option value="33916">R6</option>
+							<option value="38772">Rooms-R21.1</option>
+							<option value="38724">Rooms-R20.1</option>
+							<option value="37945">Rooms-R20</option>
+							<option value="38134">Rooms-R19.1</option>
+							<option value="37946">Rooms-R19</option>
+							<option value="38085">Rooms-R18.2</option>
+							<option value="37947">Rooms-R18.1</option>
+							<option value="37950">Rooms-R18</option>
+							<option value="37948">Rooms-R17.1</option>
+							<option value="37949">Rooms-R17</option>
+							<option value="35988">Past Indefinite</option>
+							<option value="37597">Won't do</option>
+							<option value="37527">Improvements Backlog</option>
+							<option value="37400">Warehouse</option>
+							<option value="36344">n/a</option>
+							<option value="38144">Dimelo</option>
+							<option value="38445">AI Backlog</option>
+							<option value="40187">Non-functional tasks</option>
+							<option value="40406">Rooms </option>
+							<option value="43784">Closed Captions</option>
+							<option value="44565">Analytics Backlog</option>
+							<option value="45043">rvr_backlog</option>
+							<option value="45134">vgw_backlog</option>
+							<option value="45205">RCV API &amp; Platform Backlog</option>
+							<option value="41577">Backlog</option>
+							<option value="46256">Fast Track</option>
+							<option value="46281">2021 Backlog</option>
+							<option value="51582">2021 Q4</option>
+							<option value="48448">2021 Q3</option>
+							<option value="50192">Blocked</option>
+							<option value="48387">Waiting Clarification</option>
+							<option value="41630">2020 Q4</option>
+							<option value="43071">Review Required</option>
+							<option value="43072">Prioritized Queue</option>
+							<option value="43100">Pending Prioritization</option>
+							<option value="46923">Pending Eng Review</option>
+							<option value="49818">21.4.10 Backend</option>
+							<option value="51936">2022 Backlog</option>
+							<option value="53533">2022 Q1</option>
+							<option value="54867">22.2.20 RWC + DSDK</option>
+							<option value="55684">AIWebInnovative Backlog</option>
+							<option value="55722">23.2.20 Whiteboard</option>
+							<option value="55873">22.3.10 RWC + DSDK</option>
+							<option value="55989">22.2.11 RWC + DSDK</option>
+							<option value="56393">22.3.30 RWC + DSDK</option>
+							<option value="56523">Partner Backlog</option>
+							<option value="56583">22.2.13 RWC + DSDK</option>
+							<option value="56748">22.2.30</option>
+							<option value="56790">22.4.10 RWC + DSDK</option>
+							<option value="56819">22.1.33 Backend</option>
+							<option value="56946">Web SDK 2.10</option>
+							<option value="56947">Web SDK 2.20</option>
+							<option value="56948">Web SDK 2.30</option>
+							<option value="56949">Web SDK 3.10</option>
+							<option value="57099">22.1.34 Backend</option>
+							<option value="57101">23.1.10 RWC + DSDK</option>
+							<option value="57160">22.2.18 RWC + DSDK</option>
+							<option value="57162">22.2.19 RWC + DSDK</option>
+							<option value="57242">23.1.30 Whiteboard</option>
+							<option value="57241">23.1.10 Whiteboard</option>
+							<option value="57338">22.2.191 RWC + DSDK</option>
+							<option value="57343">22.1.35 Backend</option>
+							<option value="57348">22.2.25 RWC + DSDK</option>
+							<option value="57388">22.2.24 RWC + DSDK</option>
+							<option value="57429">Web SDK 3.20</option>
+							<option value="57430">Web SDK 3.30</option>
+							<option value="57636">22.2.241 RWC + DSDK</option>
+							<option value="57663">Web SDK 4.10</option>
+							<option value="57665">Web SDK 4.20</option>
+							<option value="57666">Web SDK 4.30</option>
+							<option value="57674">22.2.26 RWC + DSDK</option>
+							<option value="57690">2022 Q4</option>
+							<option value="57691">2023 Q1</option>
+							<option value="57692">2023 Q2</option>
+							<option value="57756">22.3.35 RWC + DSDK</option>
+							<option value="57882">?</option>
+							<option value="57890">22.2.21 RWC + DSDK</option>
+							<option value="57900">22.2.251 RWC + DSDK</option>
+							<option value="57943">22.2.16 Backend</option>
+							<option value="57954">22.2.242 RWC + DSDK</option>
+							<option value="58174">2023 Backlog</option>
+							<option value="58351">22.2.32 Backend EBN SBN backup nodes</option>
+							<option value="58407">RCSFU-1564</option>
+							<option value="58473">22.2.34 Backend</option>
+							<option value="58478">22.3.36 RWC + DSDK</option>
+							<option value="58483">23.1.30 RWC</option>
+							<option value="58534">22.3.37 RWC + DSDK</option>
+							<option value="58570">UX Backlog</option>
+							<option value="58572">23.2.10 Backend</option>
+							<option value="58573">23.1.30 Backend</option>
+							<option value="58633">22.2.36 Backend</option>
+							<option value="58681">22.4.15 RWC + DSDK</option>
+							<option value="58682">23.1.30 DSDK</option>
+							<option value="59010">22.2.37 Backend</option>
+							<option value="59035">23.2.20 RWC</option>
+							<option value="59175">22.3.361 RWC+ DSDK</option>
+							<option value="59374">23.2.30 RWC</option>
+							<option value="59507">22.4.20 Whiteboard</option>
+							<option value="57240">22.4.10 Whiteboard</option>
+							<option value="59529">23.2.30 Backend</option>
+							<option value="59687">23.2.10 DSDK</option>
+							<option value="60279">23.3.10 RWC</option>
+							<option value="60268">23.1.30 Videoprocessing</option>
+							<option value="60410">SFU 23.1.10</option>
+							<option value="60921">23.1.15 RWC + DSDK</option>
+							<option value="60930">SFU 23.1.20</option>
+							<option value="60862">23.3.30 RWC</option>
+							<option value="61103">22.4.17 RWC + DSDK</option>
+							<option value="61295">23.1.10 Videoprocessing</option>
+							<option value="61146">23.2.10</option>
+							<option value="61322">23.2.20 DSDK</option>
+							<option value="61353">22.4.18 RWC + DSDK</option>
+							<option value="61364">23.1.11 RWC + DSDK</option>
+							<option value="61405">SFU 23.1.25</option>
+							<option value="61530">23.1.12 RWC + DSDK</option>
+							<option value="61427">22.4.22 Backend</option>
+							<option value="61581">23.2.30 DSDK</option>
+							<option value="61544">23.1.13 RWC + DSDK</option>
+							<option value="61683">23.2.20 Videoprocessing</option>
+							<option value="61452">SFU 23.1.30</option>
+							<option value="61982">23.4.10 Backend</option>
+							<option value="61983">23.3.10 Backend</option>
+							<option value="61997">23.4.10 RWC</option>
+							<option value="61998">23.4.10 DSDK</option>
+							<option value="62016">23.1.35 RWC</option>
+							<option value="62207">23.1.14 RWC + DSDK</option>
+							<option value="62225">23.1.16 RWC + DSDK</option>
+							<option value="62253">23.3.10 DSDK</option>
+							<option value="62254">23.3.20 Backend</option>
+							<option value="62255">23.3.30 DSDK</option>
+							<option value="62256">23.4.20 Backend</option>
+							<option value="62375">23.1.31 Backend</option>
+						</datalist>
+					</div>
+					<div id="block_case_count">
+						<br>
+						<label for="case count">Set case count:</label>
+						<br>
+						<input autocomplete="off" role="combobox" id="input_case_count" name="case_count" placeholder="Set case count" value="">
+					</div>
+					<br>
+					<div class="preference">
+						<label id="vertical">Auto create task</label>
+						<input type="checkbox" id="auto_create_test">
+					</div>
+				</div>
+				<br>
+				<button id="button">save</button>
+				<br>
+			</div>
+			<script type="text/javascript">
+
+				let fix_case, browsers, env, team, rcv_feature, releasedFeature, affectVersion, on_sprint, button, rcv_value, selectCheckTeam, selectCheckRcvFeature, selectCheckEpicLink, inputCaseCount, logo_size, releasedVersion, unreleasedVersion
+
+				browsers = document.querySelector('#browser')
+				fix_case = document.querySelector("#fix_case")
+				env = document.querySelector("#input_env")
+				on_sprint = document.querySelector("#check_sprint")
+				on_auto_create_task = document.querySelector("#auto_create_test")
+				selectCheckTeam = document.querySelector('#input_rcv_team')
+				selectCheckRcvFeature = document.querySelector('#input_feature')
+				inputCaseCount = document.querySelector('#input_case_count')
+				affectVersion = document.querySelector('#input_version')
+
+				button = document.querySelector("#button");
+
+				rcv_value = JSON.parse(localStorage.getItem("rcv_obj"))
+
+				browsers.checked = rcv_value != null ? rcv_value.browser : ''
+				fix_case.checked = rcv_value != null ? rcv_value.fix : ''
+				env.value = rcv_value != null ? rcv_value.enviroment : ''
+				on_sprint.checked = rcv_value != null ? rcv_value.sprint : ''
+				on_auto_create_task.checked = rcv_value != null ? rcv_value.createTask : ''
+				selectCheckTeam.value = rcv_value != null ? rcv_value.team : ''
+				selectCheckRcvFeature.value = rcv_value != null ? rcv_value.feature : ''
+				inputCaseCount.value = rcv_value != null ? rcv_value.count : ''
+				affectVersion.value = rcv_value != null ? rcv_value.version : ''
+
+				button.addEventListener("click", function() {
+					var rcv_obj = {
+						browser : browser.checked,
+						fix : fix_case.checked,
+						sprint : on_sprint.checked,
+						createTask : on_auto_create_task.checked,
+						enviroment : env.value,
+						team : selectCheckTeam.value,
+						feature : selectCheckRcvFeature.value,
+						count : inputCaseCount.value,
+						version : affectVersion.value,
+					}
+
+					localStorage.setItem("rcv_obj", JSON.stringify(rcv_obj))
+
+					rcv_value = JSON.parse(localStorage.getItem("rcv_obj"))
+
+					/** 
+	 				* Uncomment for debugging
+	 				*/
+					// console.log("Save options:" + 
+					// 	"\n\nBrowser : " + rcv_value.browser + 
+					// 	"\nFix/Case : " + rcv_value.fix + 
+					// 	"\nSprint : " + rcv_value.sprint +
+					// 	"\nEnvironment : " + rcv_value.env + 
+					// 	"\nTeam : " + rcv_value.team + 
+					// 	"\nFeature : " + rcv_value.feature + 
+					// 	"\nCase count : " + rcv_value.count + 
+					// 	"\nAffect version : " + rcv_value.version
+					// 	)
+				})
+
+				logo_size = "40px"
+				var border_radius = "15px"
+
+				var element = document.querySelector("#block")
+				element.style.boxShadow = "0px 8px 16px 0px rgba(0,0,0,0.2)"
+				element.style.position = "absolute"
+				element.style.borderRadius = border_radius
+				element.style.display = "block"
+				element.style.height = logo_size
+				element.style.width = logo_size
+				element.style.zIndex = "100"
+				element.style.marginTop = "17px"
+			// element.style.transition = 'all 0.9s cubic-bezier(0.73, -0.35, 0, 1.49) 0s'
+
+				var logo = document.querySelector("#block #logo")
+				logo.style.width = logo_size
+				logo.style.display = "block"
+				logo.style.option = "absolute"
+				logo.style.borderRadius = border_radius
+			// logo.style.animation = 'pulsing 1.5s infinite'
+				logo.style.transition = 'all 0.9s cubic-bezier(0.73, -0.55, 0, 1.49) 0s'
+
+				var title_logo = document.querySelector("#block #title_logo")
+				title_logo.style.marginTop = "20px"
+				title_logo.style.width = "180px"
+
+				var blockContent = document.querySelector("#block .content_block")
+				blockContent.style.backgroundColor = "#e3e3e3"
+				blockContent.style.borderRadius = "10px"
+				blockContent.style.textAlign = "center"
+				blockContent.style.display = "none"
+
+				let a
+				let c
+
+			const setAnimationTime = 10000 //millisecond / 10 second
+			const setPauseTime = 300000 //millisecond / 5 minutes
+
+			button.addEventListener("mouseup", function(){
+				element.style.width = logo_size
+				element.style.height = logo_size
+				element.style.borderRadius = border_radius
+				element.style.backgroundColor = "rgba(0, 0, 0, 0)"
+				blockContent.style.display = "none"
+				element.style.transition = ".1s"
+				logo.style.display = "block"
+
+				a = setInterval(function() {
+					logo.style.animation = 'pulsing 1.0s infinite'
+				}, setPauseTime);
+			})
+
+			logo.addEventListener("mousedown", function(){
+				element.style.width = "220px"
+				element.style.height = "auto"
+				element.style.borderRadius = "10px"
+				element.style.backgroundColor = "#e3e3e3"
+				blockContent.style.display = "block"
+				element.style.transition = ".1s"
+				logo.style.display = "none"
+				logo.style.animation = "none"
+
+				clearInterval(a) 
+			})
+
+			a = setInterval(function() {
+				logo.style.animation = 'pulsing 1.0s infinite'
+
+				clearInterval(c)
+				c = setInterval(function() {
+					logo.style.animation = 'none'
+
+					clearInterval(a)
+					a = setInterval(function() {
+						logo.style.animation = 'pulsing 1.0s infinite'
+					}, setPauseTime); 
+				}, setAnimationTime)
+			}, setPauseTime);
+
+			c = setInterval(function() {
+				logo.style.animation = 'none'
+
+				clearInterval(a)
+				a = setInterval(function() {
+					logo.style.animation = 'pulsing 1.0s infinite'
+				}, setPauseTime); 
+			}, setAnimationTime)
+
+
+
+			if (fix_case.checked == true) {
+				document.querySelector('#browsers').style.display = 'none'
+				document.querySelector('#box_env').style.display = 'none'
+				document.querySelector('#block_version').style.display = 'none'
+			} else {
+				document.querySelector('#block_case_count').style.display = 'none'
+			}
+
+			fix_case.addEventListener('change', function() {
+				if (fix_case.checked == true) {
+					document.querySelector('#browsers').style.display = 'none'
+					document.querySelector('#box_env').style.display = 'none'
+					document.querySelector('#block_version').style.display = 'none'
+					document.querySelector('#block_case_count').style.display = 'block'
+				} else {
+					document.querySelector('#browsers').style.display = 'flex'
+					document.querySelector('#box_env').style.display = 'block'
+					document.querySelector('#block_version').style.display = 'block'
+					document.querySelector('#block_case_count').style.display = 'none'
+				}
+			})
+
+			var data_env = document.querySelector('#data_env')
+
+			document.querySelector('#input_env').addEventListener('click', function() {
+				var input_env = document.querySelector('#input_env')
+
+				input_env.select()
+
+				data_env.style.display = "block"
+				input_env.style.display = "5px 5px 0 0"
+
+				for (let option of data_env.options) {
+					option.onclick = function () {
+						input_env.value = option.value
+						data_env.style.display = "none"
+						input_env.style.borderRadius = "5px"
+					}
+				}
+
+				input_env.oninput = function () {
+					currentFocus = -1
+					var text = input_env.value.toUpperCase()
+					for (let option of data_env.options) {
+						if (option.value.toUpperCase().indexOf(text) > -1) {
+							option.style.display = "block"
+						} else {
+							option.style.display = "none"
+						}
+					}
+				}
+			})
+
+
+			var data_team = document.querySelector('#data_rcv_team')
+
+			document.querySelector('#input_rcv_team').addEventListener('click', function() {
+				var input_team = document.querySelector('#input_rcv_team')
+
+				input_team.select()
+
+				data_team.style.display = "block"
+				input_team.style.display = "5px 5px 0 0"
+
+				for (let option of data_team.options) {
+					option.onclick = function () {
+						input_team.value = option.value
+						data_team.style.display = "none"
+						input_team.style.borderRadius = "5px"
+					}
+				}
+
+				input_team.oninput = function () {
+					currentFocus = -1
+					var text = input_team.value.toUpperCase()
+					for (let option of data_team.options) {
+						if (option.value.toUpperCase().indexOf(text) > -1) {
+							option.style.display = "block"
+						} else {
+							option.style.display = "none"
+						}
+					}
+				}
+			})
+
+			var data_feature = document.querySelector('#data_feature')
+
+			document.querySelector('#input_feature').addEventListener('click', function() {
+				var input_feature = document.querySelector('#input_feature')
+
+				input_feature.select()
+
+				data_feature.style.display = "block"
+				input_feature.style.display = "5px 5px 0 0"
+
+				for (let option of data_feature.options) {
+					option.onclick = function () {
+						input_feature.value = option.value
+						data_feature.style.display = "none"
+						input_feature.style.borderRadius = "5px"
+					}
+				}
+
+				input_feature.oninput = function () {
+					currentFocus = -1
+					var text = input_feature.value.toUpperCase()
+					for (let option of data_feature.options) {
+						if (option.value.toUpperCase().indexOf(text) > -1) {
+							option.style.display = "block"
+						} else {
+							option.style.display = "none"
+						}
+					}
+				}
+			})
+
+			var data_version = document.querySelector('#data_version')
+
+			document.querySelector('#input_version').addEventListener('click', function() {
+				var input_version = document.querySelector('#input_version')
+
+				input_version.select()
+
+				data_version.style.display = "block"
+				input_version.style.display = "5px 5px 0 0"
+
+				for (let option of data_version.options) {
+					option.onclick = function () {
+						input_version.value = option.text
+						data_version.style.display = "none"
+						input_version.style.borderRadius = "5px"
+					}
+				}
+
+				input_version.oninput = function () {
+					currentFocus = -1
+					var text = input_version.value.toUpperCase()
+					console.log(text)
+					for (let option of data_version.options) {
+						if (option.text.toUpperCase().indexOf(text) > -1) {
+							option.style.display = "block"
+						} else {
+							option.style.display = "none"
+						}
+					}
+				}
+			})
+
+			document.querySelector('#input_case_count').addEventListener('click', function() {
+				var input_case_count = document.querySelector('#input_case_count')
+
+				input_case_count.select()
+			})
+
+			logo.addEventListener('mouseover', function() {
+				logo.style.transform = 'scale(1.2)'
+				// element.style.transform = 'scale(1.3)'
+			})
+
+			logo.addEventListener('mouseout', function() {
+				logo.style.transform = 'scale(1.0)'
+				// element.style.transform = 'scale(1.0)'
+			})
+
+			let list = [data_env, data_version, data_feature, data_team]
+
+			button.addEventListener("click", function() {
+
+				list.forEach(function(item) {
+					item.style.display = 'none'
+				})
+			})
+		</script>
+	</body>	
